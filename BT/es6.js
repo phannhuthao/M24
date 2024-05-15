@@ -107,6 +107,12 @@ student = { ...student, address: "Hào"};
 console.log(student);
 
 // 7. For ... of duyệt các phần tử trong mảng ( chỉ dành cho mảng)
+// sử dụng for in (object hoặc mảng)
+
+for (const i in result) {
+    console.log(i);
+    console.log("value", result[i]);
+}
 
 //  for (let key of result) {
 //     console.log(key); // duyệt theo giá trị của từng phần tử trong mảng
