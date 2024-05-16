@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BT 1: Guess Game</title>
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color:midnightblue;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+    background-color: black;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: blue;
+}
+
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80px;
+    margin-top: 10px;
+}
+
+.remaining-guess {
+    margin-top: 10px;
+    color: #888;
+}
+.tittle {
+    text-align: center;
+    color: white
+}
+
+</style>
+
+<body>
+    <h1 class="tittle">Guess Game</h1>
+    <div class="container">
+        <p id="wordToGuess">This word is: <span id="displayedWord">****</span></p>
+        <input type="text" id="guessInput">
+        <p class="remaining-guess">Remaining guess: <span id="remainingGuess">3</span></p>
+        <p id="pointer">Point: <span id="guesspoint">0</span></p>
+
+        <button class="btn" onclick="guess()">Guess</button>
+        <button class="btn" onclick="resetGame()">Reset Game</button>
+    </div>
+
+
+    <script src="/session 5/bt1.js"></script>
+</body>
+
+</html>
