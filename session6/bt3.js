@@ -1,0 +1,14 @@
+"use strict";
+let n1;
+let n2;
+let result;
+n1 = 2;
+n2 = 4;
+result = n1 + n2;
+console.log("Kêt quả của 2 số với nhau tổng:", result);
+result = n1 - n2;
+console.log("Kêt quả của 2 số với nhau hiệu:", result);
+result = n1 * n2;
+console.log("Kêt quả của 2 số với nhau tích:", result);
+result = n1 / n2;
+console.log("Kêt quả của 2 số với nhau thương:", result);
