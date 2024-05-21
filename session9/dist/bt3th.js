@@ -1,4 +1,5 @@
-// Khai báo mảng todolist
+"use strict";
+var _a;
 const todolist = [
     {
         id: 1,
@@ -16,21 +17,19 @@ const todolist = [
         isCompleted: true,
     },
 ];
-
 function displayInitialTodos() {
-    var todoList = document.querySelector('#todoList ul');
+    const todoList = document.querySelector('#todoList ul');
     todolist.forEach(function (item) {
-        var newTodoItem = document.createElement('li');
+        const newTodoItem = document.createElement('li');
         newTodoItem.className = 'list-group-item d-flex justify-content-between align-items-center';
         newTodoItem.innerText = item.title;
         if (item.isCompleted) {
             newTodoItem.classList.add('completed');
-            var checkIcon = document.createElement('i');
+            const checkIcon = document.createElement('i');
             checkIcon.className = 'bi bi-check-circle-fill';
             newTodoItem.appendChild(checkIcon);
         }
-        
-        var deleteButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
         deleteButton.className = 'btn btn-sm btn-danger float-end';
         deleteButton.innerText = 'X';
         deleteButton.addEventListener('click', function () {
@@ -43,21 +42,16 @@ function displayInitialTodos() {
         todoList.appendChild(newTodoItem);
     });
 }
-
 displayInitialTodos();
-
-
-
-
-document.getElementById('addTodoBtn').addEventListener('click', function () {
-    var todoInput = document.getElementById('todoInput');
-    var todoText = todoInput.value.trim();
+(_a = document.getElementById('addTodoBtn')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
+    const todoInput = document.getElementById('todoInput');
+    const todoText = todoInput.value.trim();
     if (todoText !== '') {
-        var todoList = document.querySelector('#todoList ul');
-        var newTodoItem = document.createElement('li');
-        newTodoItem.className = 'list-group-item';
+        const todoList = document.querySelector('#todoList ul');
+        const newTodoItem = document.createElement('li');
+        newTodoItem.className = 'list-group-item d-flex justify-content-between align-items-center';
         newTodoItem.innerText = todoText;
-        var deleteButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
         deleteButton.className = 'btn btn-sm btn-danger float-end';
         deleteButton.innerText = 'X';
         deleteButton.addEventListener('click', function () {
@@ -71,22 +65,25 @@ document.getElementById('addTodoBtn').addEventListener('click', function () {
         todoInput.value = '';
     }
 });
-
 function filterTodos(status) {
-    var todoItems = document.querySelectorAll('.list-group-item');
+    const todoItems = document.querySelectorAll('.list-group-item');
     todoItems.forEach(function (item) {
         if (status === 'all') {
             item.style.display = 'block';
-        } else if (status === 'active') {
+        }
+        else if (status === 'active') {
             if (!item.classList.contains('completed')) {
                 item.style.display = 'block';
-            } else {
+            }
+            else {
                 item.style.display = 'none';
             }
-        } else if (status === 'completed') {
+        }
+        else if (status === 'completed') {
             if (item.classList.contains('completed')) {
                 item.style.display = 'block';
-            } else {
+            }
+            else {
                 item.style.display = 'none';
             }
         }

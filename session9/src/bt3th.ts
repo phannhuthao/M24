@@ -1,5 +1,10 @@
-// Khai báo mảng todolist
-const todolist = [
+interface TodoItem {
+    id: number;
+    title: string;
+    isCompleted: boolean;
+}
+
+const todolist: TodoItem[] = [
     {
         id: 1,
         title: "Leo Núi",
@@ -15,22 +20,22 @@ const todolist = [
         title: "Học Bài",
         isCompleted: true,
     },
+
 ];
 
-function displayInitialTodos() {
-    var todoList = document.querySelector('#todoList ul');
+function displayInitialTodos(): void {
+    const todoList = document.querySelector('#todoList ul') as HTMLUListElement;
     todolist.forEach(function (item) {
-        var newTodoItem = document.createElement('li');
+        const newTodoItem = document.createElement('li');
         newTodoItem.className = 'list-group-item d-flex justify-content-between align-items-center';
         newTodoItem.innerText = item.title;
         if (item.isCompleted) {
             newTodoItem.classList.add('completed');
-            var checkIcon = document.createElement('i');
+            const checkIcon = document.createElement('i');
             checkIcon.className = 'bi bi-check-circle-fill';
             newTodoItem.appendChild(checkIcon);
         }
-        
-        var deleteButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
         deleteButton.className = 'btn btn-sm btn-danger float-end';
         deleteButton.innerText = 'X';
         deleteButton.addEventListener('click', function () {
@@ -46,18 +51,15 @@ function displayInitialTodos() {
 
 displayInitialTodos();
 
-
-
-
-document.getElementById('addTodoBtn').addEventListener('click', function () {
-    var todoInput = document.getElementById('todoInput');
-    var todoText = todoInput.value.trim();
+document.getElementById('addTodoBtn')?.addEventListener('click', function () {
+    const todoInput = document.getElementById('todoInput') as HTMLInputElement;
+    const todoText = todoInput.value.trim();
     if (todoText !== '') {
-        var todoList = document.querySelector('#todoList ul');
-        var newTodoItem = document.createElement('li');
-        newTodoItem.className = 'list-group-item';
+        const todoList = document.querySelector('#todoList ul') as HTMLUListElement;
+        const newTodoItem = document.createElement('li');
+        newTodoItem.className = 'list-group-item d-flex justify-content-between align-items-center';
         newTodoItem.innerText = todoText;
-        var deleteButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
         deleteButton.className = 'btn btn-sm btn-danger float-end';
         deleteButton.innerText = 'X';
         deleteButton.addEventListener('click', function () {
@@ -72,22 +74,22 @@ document.getElementById('addTodoBtn').addEventListener('click', function () {
     }
 });
 
-function filterTodos(status) {
-    var todoItems = document.querySelectorAll('.list-group-item');
+function filterTodos(status: 'all' | 'active' | 'completed'): void {
+    const todoItems = document.querySelectorAll('.list-group-item');
     todoItems.forEach(function (item) {
         if (status === 'all') {
-            item.style.display = 'block';
+            (item as HTMLElement).style.display = 'block';
         } else if (status === 'active') {
             if (!item.classList.contains('completed')) {
-                item.style.display = 'block';
+                (item as HTMLElement).style.display = 'block';
             } else {
-                item.style.display = 'none';
+                (item as HTMLElement).style.display = 'none';
             }
         } else if (status === 'completed') {
             if (item.classList.contains('completed')) {
-                item.style.display = 'block';
+                (item as HTMLElement).style.display = 'block';
             } else {
-                item.style.display = 'none';
+                (item as HTMLElement).style.display = 'none';
             }
         }
     });
