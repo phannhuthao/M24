@@ -1,6 +1,9 @@
 "use strict";
+<<<<<<< HEAD
 // Class là tập hợp , nhóm các đối tượng có chung đặc điểm là hành vi , là khuôn để tạo ra đối tượng
 // Class cũng là 1 Datatype
+=======
+>>>>>>> 89e7efa79455b4c71d25007b76d142eff3290041
 class Person {
     constructor(sex, height, weight) {
         this.sex = sex;
@@ -43,6 +46,7 @@ let variable; // kiểu khai báo là Person
 variable = new Student("Huỳnh Tâm Anh", 19, "SV001", true, 50, 1.7); // khởi tạo / kiểu thực tế
 // Đối tượng này có thể thực hiện những hành vi hay đặc điểm gì: kiểu khai báo
 // Biêt được phương thức ghi đè nào được thực thi
+<<<<<<< HEAD
 console.log(variable.toString()); // gọi đến của student ;
 variable = new Person(true, 1.8, 70);
 console.log(variable.toString()); // gọi đến của person
@@ -84,6 +88,14 @@ console.log(objjj1);
 // + -> Các phương thức nên là public 
 // - Tính đa hình: -> Một phương thức có thể triển khai theo nhiều cách: thường đi với tính chất kế thường
 // - Tính trừu tượng: -> 
+=======
+console.log(variable);
+// Tính bao đóng
+// Hạn chế quyền truy cập của các tác nhân bên ngoài
+// Private. protected, (default), public
+// Public:
+// Default (Không khau báo từ khóa): chỉ có thể truy cập tỏng package
+>>>>>>> 89e7efa79455b4c71d25007b76d142eff3290041
 // class Person {
 //     private sex: boolean;
 //     private height: number;
