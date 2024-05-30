@@ -1,37 +1,44 @@
 "use strict";
-function validateParam(param) {
-    return typeof param === 'number';
-}
-// Hàm decorator
-function paramValidator(validationFunction) {
-    return function (target, propertyKey, descriptor) {
-        const originalMethod = descriptor.value;
-        // Định nghĩa một hàm mới cho phương thức được decorator áp dụng
-        const decoratedMethod = function (...args) {
-            for (let arg of args) {
-                if (!validationFunction(arg)) {
-                    console.log(`Tham số không hợp lệ: ${arg}`);
-                    return; // Dừng hàm nếu có tham số không hợp lệ
-                }
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+// Hàm decorater
+function validate(validateFn) {
+    return function (target, propertyName, descriptor) {
+        // Logic
+        // lấy ra hàm cần xử lí trước khi chỉnh sửa
+        let div = descriptor.value;
+        console.log(div);
+        // tiếp tục chỉnh sửa hàm
+        descriptor.value = (a, b) => {
+            // kiểm tra số b
+            if (validateFn(b)) {
+                // Hợp lệ
+                return div(a, b);
             }
-            return originalMethod.apply(this, args);
+            else {
+                // Không hợp lệ
+                throw new Error("Số nà không thể chia cho 0");
+            }
         };
-        // Gán hàm mới cho phương thức
-        Object.defineProperty(target, propertyKey, {
-            value: decoratedMethod,
-            configurable: true,
-            enumerable: false,
-            writable: true
-        });
     };
 }
-class Example {
-    exampleFunction(num) {
-        console.log("Tham số hợp lệ:", num);
+// Hàm kiểm tra số có bằng không hay không
+const checkNumber = (a) => {
+    return a != 0;
+};
+// Lớp kiểm thử
+class Test {
+    div(a, b) {
+        return a / b;
     }
 }
-// Áp dụng decorator bằng cách gọi decorator function và truyền vào method descriptor
-paramValidator(validateParam)(Example.prototype, 'exampleFunction', Object.getOwnPropertyDescriptor(Example.prototype, 'exampleFunction'));
-const example = new Example();
-example.exampleFunction(5); // Tham số hợp lệ
-example.exampleFunction(2); // Tham số không hợp lệ, thông báo sẽ được in ra
+__decorate([
+    validate(checkNumber)
+], Test.prototype, "div", null);
+let oneTest = new Test();
+console.log(oneTest.div(3, 2));
+console.log(oneTest.div(3, 0));
