@@ -1,16 +1,16 @@
-import React from 'react';
 
-const Box  = () => {
+
+const Box = (props : any) => {
     const BoxStyle = {
         width: '200px',
         height: '200px',
         marginBottom: '10px',
     };
-    return(
+    return (
         <div>
-        <div style={{...BoxStyle, backgroundColor: 'red' }} />
-        <div style={{...BoxStyle, backgroundColor: 'blue'}} />
-        <div style={{...BoxStyle, backgroundColor: 'green'}}/>
+            <div style={{...BoxStyle,backgroundColor :"Blue"}}></div>
+            <div style={{...BoxStyle,backgroundColor :"red"}}></div>
+            <div style={{...BoxStyle,backgroundColor :"green"}}></div>
         </div>
     );
 }
