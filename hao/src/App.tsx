@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Parents from './Parents'
 import Exercise01 from './components/session30/Exersice01'
+import TodoList from './components/session32/todolist'
 
 // function App() {
 //   const [count, setCount] = useState(0)
@@ -104,15 +105,15 @@ class App extends Component<{}, { text: string; isAlive: boolean; setTime: numbe
   render() {
     return (
       <>
-        <input type="number" placeholder="Đặt thời gian đếm ngược (theo giây)" value={this.state.inputTime} onChange={this.handleInputChange} />
+        {/* <input type="number" placeholder="Đặt thời gian đếm ngược (theo giây)" value={this.state.inputTime} onChange={this.handleInputChange} />
         <button onClick={this.startTime}>Start</button>
         <button onClick={this.resertTime}>Resert</button>
         <button onClick={this.PauseTime}>{this.state.isPaused ? 'Resume' : 'Pause'}</button>
         <p>{this.state.setTime}</p>
         <p>{this.state.text}</p>
         <button onClick={() => this.setState({ isAlive: false })}>Xóa Parents</button>
-        <button onClick={() => this.setState({ text: 'Nguyễn Thanh Hạ' })}>Change</button>
-        <Exercise01></Exercise01>
+        <button onClick={() => this.setState({ text: 'Nguyễn Thanh Hạ' })}>Change</button> */}
+        <TodoList></TodoList>
       </>
     );
   }
