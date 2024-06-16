@@ -22,6 +22,8 @@ type Todo = {
 type StateType = {
     todos: Todo[];
     newTodoTitle: string;
+    editingTodoId: number | null;
+    editingTodoTitle: string;
 };
 
 export default class TodoList extends Component<{}, StateType> {
@@ -34,9 +36,12 @@ export default class TodoList extends Component<{}, StateType> {
                 { id: 3, tittle: "Cướp ngân hàng", status: false },
                 { id: 4, tittle: "Trộm chó", status: false},
             ],
-            newTodoTitle: ""
+            newTodoTitle: "",
+            editingTodoId: null,
+            editingTodoTitle: ""
         };
     }
+
     componentDidMount() {
         const savedTodos = localStorage.getItem('todos');
         if (savedTodos) {
@@ -52,6 +57,10 @@ export default class TodoList extends Component<{}, StateType> {
 
     handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         this.setState({ newTodoTitle: event.target.value });
+    };
+
+    handleEditInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        this.setState({ editingTodoTitle: event.target.value });
     };
 
     addTodo = (event: React.FormEvent): void => {
@@ -76,6 +85,24 @@ export default class TodoList extends Component<{}, StateType> {
         this.setState((prevState) => ({
             todos: prevState.todos.filter(todo => todo.id !== id)
         }));
+    };
+
+    startEditing = (id: number, tittle: string): void => {
+        this.setState({ editingTodoId: id, editingTodoTitle: tittle });
+    };
+
+    saveEdit = (id: number): void => {
+        this.setState((prevState) => ({
+            todos: prevState.todos.map(todo =>
+                todo.id === id ? { ...todo, tittle: prevState.editingTodoTitle } : todo
+            ),
+            editingTodoId: null,
+            editingTodoTitle: ""
+        }));
+    };
+
+    cancelEdit = (): void => {
+        this.setState({ editingTodoId: null, editingTodoTitle: "" });
     };
 
     render() {
@@ -109,16 +136,35 @@ export default class TodoList extends Component<{}, StateType> {
                             return (
                                 <Alert key={todo.id} className="p-1 my-2" variant={Color[indexRandom]}>
                                     <div className="d-flex align-items-center justify-content-between">
-                                        <div className="d-flex gap-2">
-                                            <Form.Check defaultChecked={todo.status} />
-                                            <span className={todo.status ? 'text-decoration-line-through' : ''}>
-                                                {todo.tittle}
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <Button variant="warning me-3">Sửa</Button>
-                                            <Button variant="danger" onClick={() => this.deleteTodo(todo.id)}>Xóa</Button>
-                                        </div>
+                                        {
+                                            this.state.editingTodoId === todo.id ? (
+                                                <>
+                                                    <Form.Control
+                                                        type="text"
+                                                        value={this.state.editingTodoTitle}
+                                                        onChange={this.handleEditInputChange}
+                                                        className="mr-sm-2"
+                                                    />
+                                                    <div>
+                                                        <Button variant="success me-2" onClick={() => this.saveEdit(todo.id)}>Lưu</Button>
+                                                        <Button variant="secondary" onClick={this.cancelEdit}>Hủy</Button>
+                                                    </div>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div className="d-flex gap-2">
+                                                        <Form.Check defaultChecked={todo.status} />
+                                                        <span className={todo.status ? 'text-decoration-line-through' : ''}>
+                                                            {todo.tittle}
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <Button variant="warning me-3" onClick={() => this.startEditing(todo.id, todo.tittle)}>Sửa</Button>
+                                                        <Button variant="danger" onClick={() => this.deleteTodo(todo.id)}>Xóa</Button>
+                                                    </div>
+                                                </>
+                                            )
+                                        }
                                     </div>
                                 </Alert>
                             );
