@@ -1,7 +1,4 @@
-import './App.css'
-
-
-
+// import './App.css'
 // function App() {
 //   const [count, setCount] = useState(0)
 //   // console.log("hello");
@@ -118,18 +115,9 @@ import './App.css'
 // export default App
 
 import { createContext } from 'react'; 
-import GrandFather from './components/context/GrandFather';
-import Son from './components/context/Son';
-import Father from './components/context/Father';
-import Home from './components/reducer/home';
-import List from './components/memo/list';
-import Clock from './components/session36/bt5';
-import FocusInput from './components/session36/bt4';
-import Navbar from './components/session36/bt3';
-import Focus from './components/session36/bt4';
-import Scroll from './components/session36/bt6';
-import KeyPress from './components/session36/bt10';
-import ImagePreview from './components/session36/bt11';
+import Header from './components/session37/header';
+import Body from './components/session37/body';
+import Footer from './components/session37/footer';
 
 
 export const ThemeContext = createContext({
@@ -146,10 +134,9 @@ export default function App() {
 
   return(
    <div>
-    {/* <ThemeContext.Provider value={data}>
-    <GrandFather></GrandFather>
-    </ThemeContext.Provider> */}
-    <ImagePreview></ImagePreview>
+    <Header></Header>
+    <Body></Body>
+    <Footer></Footer>
    </div>
   )
 }

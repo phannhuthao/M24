@@ -1,0 +1,69 @@
+.bodyweb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.image {
+    flex: 1; /* Phần ảnh chiếm 1 phần */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.title {
+    flex: 1; /* Phần tiêu đề và input chiếm 1 phần */
+    padding-left: 20px;
+}
+
+.title h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.title p {
+    margin-bottom: 20px;
+}
+
+.title input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.title input[type='password'] {
+    margin-bottom: 20px;
+}
+
+
+.buttons {
+    display: flex;
+    gap: 10px; /* Khoảng cách giữa các nút */
+}
+
+.buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    font-size: 1em;
+}
+
+.buttons button:nth-child(2) {
+    background-color: white; /* Màu nền khác cho nút thứ hai nếu muốn */
+    color: black;
+}
